@@ -22,17 +22,17 @@ slist:
 
 slist_tail:
     /* empty */ { printf("empty slist_tail\n"); }
-  | sexpr slist_tail { printf("recursively matched slist_tail\n"); }
+  | sexpr slist_tail { printf("recursively slist_tail\n"); }
   ;
 
 sexpr:
-      atom                   { printf("matched atom\n"); }
-    | list                   { printf("matched list sexpr\n"); }
+      atom                   { printf("atom\n"); }
+    | list                   { printf("list sexpr\n"); }
     ;
 
 list:
-      '(' members ')'        { printf("matched list\n"); }
-    | '(' ')'                { printf("matched empty list\n"); }
+      '(' members ')'        { printf("list\n"); }
+    | '(' ')'                { printf("empty list\n"); }
     ;
 
 members:
