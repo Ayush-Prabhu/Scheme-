@@ -14,8 +14,8 @@
 
 "+"                      { return PLUS; }
 "-"                      { return MINUS; }
-"*"                      { return STAR; }
-"/"                      { return SLASH; }
+"*"                      { return MUL; }
+"/"                      { return DIV; }
 
 [0-9]+                   { 
                              yylval.ival = atoi(yytext);

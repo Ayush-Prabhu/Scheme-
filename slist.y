@@ -18,7 +18,7 @@
 %token BOOLEAN
 %token OPEN_PAREN CLOSE_PAREN
 %token IF LAMBDA DEFINE
-%token PLUS MINUS STAR SLASH
+%token PLUS MINUS MUL DIV
 
 %%
 
@@ -109,10 +109,10 @@ math_expr:
           { printf("Matched production: math_expr -> PLUS expr_list\n"); }
     | MINUS expr_list 
           { printf("Matched production: math_expr -> MINUS expr_list\n"); }
-    | STAR expr_list 
-          { printf("Matched production: math_expr -> STAR expr_list\n"); }
-    | SLASH expr_list 
-          { printf("Matched production: math_expr -> SLASH expr_list\n"); }
+    | MUL expr_list 
+          { printf("Matched production: math_expr -> MUL expr_list\n"); }
+    | DIV expr_list 
+          { printf("Matched production: math_expr -> DIV expr_list\n"); }
     ;
 
 /* Application: a function applied to a list of arguments */
