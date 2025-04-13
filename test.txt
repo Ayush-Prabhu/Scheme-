@@ -1,0 +1,33 @@
+42
+
+"hello world"
+
+#t
+
+#f
+
+x
+
+(+ 1 2)
+
+(- 3 1)
+
+(* 2 3)
+
+(/ 10 2)
+
+(if #t 1 2)
+
+(lambda () 42)
+
+(lambda (x) x)
+
+(lambda (x y) (+ x y))
+
+(define x 1)
+
+(f 1 2)
+
+((lambda (x) x) 42)
+
+((+ 1 2) 3 4)
