@@ -1,5 +1,5 @@
 %{
-#include "racket.tab.h"
+#include "slist.tab.h"
 #include <stdlib.h>
 #include <string.h>
 %}
