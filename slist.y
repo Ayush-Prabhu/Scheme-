@@ -11,7 +11,7 @@
     char* sval;
 }
 
-/* Token declarations: NOTE the new END token */
+
 %token <ival> NUMBER
 %token <sval> STRING
 %token <sval> IDENTIFIER
@@ -19,11 +19,10 @@
 %token OPEN_PAREN CLOSE_PAREN
 %token IF LAMBDA DEFINE
 %token PLUS MINUS STAR SLASH
-%token END
 
 %%
 
-/* Start symbol now explicitly expects the END token */
+/* Start symbol now does not explicitly expect the END token */
 program:
       expr_list
           { 
