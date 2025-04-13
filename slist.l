@@ -1,32 +1,48 @@
 %{
-#include <stdio.h>
-#include "slist.tab.h"
+#include "racket.tab.h"
+#include <stdlib.h>
+#include <string.h>
 %}
 
-ID      [a-zA-Z_][a-zA-Z_0-9]*
-NUM     [0-9]+
-STR     \"([^\"]|\\\")*\"
-OPERATOR [\+\-\*\/]  // Define operator token
+%%
+
+"("                      { return OPEN_PAREN; }
+")"                      { return CLOSE_PAREN; }
+"if"                     { return IF; }
+"lambda"                 { return LAMBDA; }
+"define"                 { return DEFINE; }
+
+"+"                      { return PLUS; }
+"-"                      { return MINUS; }
+"*"                      { return STAR; }
+"/"                      { return SLASH; }
+
+[0-9]+                   { 
+                             yylval.ival = atoi(yytext);
+                             return NUMBER; 
+                         }
+
+\"([^\\"]|\\.)*\"        {
+                             yylval.sval = strdup(yytext);
+                             return STRING; 
+                         }
+
+"#t"                    { return BOOLEAN; }
+"#f"                    { return BOOLEAN; }
+
+[a-zA-Z_][a-zA-Z0-9_]*   { 
+                             yylval.sval = strdup(yytext);
+                             return IDENTIFIER; 
+                         }
+
+[ \t\n\r]+              { /* skip whitespace */ }
+
+<<EOF>>                 { return 0; }
+
+.                       { printf("Unknown character: %s\n", yytext); }
 
 %%
 
-{ID}    { yylval.str = strdup(yytext); return ID; }
-{NUM}   { yylval.str = strdup(yytext); return NUM; }
-{STR}   { yylval.str = strdup(yytext); return STR; }
-
-"+"     { return ADD; }   // Return ADD token for "+"
-"-"     { return SUB; }   // Return SUB token for "-"
-"*"     { return MUL; }   // Return MUL token for "*"
-"/"     { return DIV; }   // Return DIV token for "/"
-
-"("     { return '('; }
-")"     { return ')'; }
-
-[ \t\n]+ ;  // Skip whitespace
-.       { return yytext[0]; }
-
-%%
-
-int yywrap() {
+int yywrap(void) {
     return 1;
 }
