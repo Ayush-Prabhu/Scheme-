@@ -26,7 +26,7 @@
 program:
       expr_list
           { 
-            printf("Matched production: program -> expr_list END\n"); 
+            printf("Matched production: program -> expr_list\n"); 
             printf("Input accepted.\n"); 
           }
     ;
